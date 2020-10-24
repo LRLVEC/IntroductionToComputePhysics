@@ -1,0 +1,64 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{harpoon}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows, shapes, positioning, calc}
+\geometry{a4paper, left=1cm, right=1cm, top=2cm, bottom=2cm}
+\setlength{\parindent}{1cm}
+\renewcommand\contentsname{Content}
+\title{Report 1: Methods to compute pseudopotential}
+\author{Yuanxing Duan 段元兴}
+\date{\today}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\setcounter{page}{1}
+\newpage
+\tableofcontents
+\newpage
+    \section{Introduction to pseudopotential}
+        \indent A pseudopotential (effective potential) is used as an approximation for the
+        simplified description of complex systems. For example, replacing the complex core elections
+        and nucleus inside an atomic with a simplified potential $V_{pseudo}$ so that Schrödinger
+        equation contains a modified effective potential term instead of the Coulombic potential
+        term for core electrons normally found in the Schrödinger equation. In this way the core
+        states are eliminated and the valence elections are described by pseudo-wavefunctions $\psi_{pseudo}$
+        with significantly fewer nodes. And because the core electrons are usually more local, so require more
+        higher energy plane waves in the basis set, which means higher cutoff energy $E_{cut}=\dfrac{\hbar^2G_{cut}^2}{2m}$.
+        With pseudopotential we can ignore these so valence elections + pseudopotential are much more efficient than
+        considering all electrions.\\
+        First-principles pseudopotentials are derived from an atomic reference state, requiring that the pseudo and all
+        electron valence eigenstates have the same energies and amplitude (and thus density) outside a chosen core cut-off
+        radius $r_c$. And thus there are two approximation:\\
+        \indent 1. It's a picture of one election,\\
+        \indent 2. The small-core approximation assumes that there is no significant overlap between core and valence wave-function.\\
+    \section{Pseudopotentials}
+        \indent Norm-conserving and ultrasoft are the two most common forms of pseudopotential used in modern plane-wave electronic
+        structure codes. They allow a basis-set with a significantly lower cut-off (the frequency of the highest Fourier mode) to be
+        used to describe the electron wavefunctions and so allow proper numerical convergence with reasonable computing resources.
+        \subsection{Norm-conserving pseudopotential}
+        \indent Norm-conserving pseudopotential was first proposed by Hamann, Schlüter, and Chiang (HSC) in 1979. The original HSC
+        norm-conserving pseudopotential takes the following form:
+        \begin{equation}
+            \hat{V}_{ps}(r)=\sum _{l}\sum _{m}|Y_{lm}\rangle V_{lm}(r)\langle Y_{lm}|
+        \end{equation}
+        where $|Y_{lm}\rangle$ projects a one-particle wavefunction, such as one Kohn-Sham orbital, to the angular momentum labeled by
+        $\{l,m\}$. $V_{lm}(r)$ is the pseudopotential that acts on the projected component. Different angular momentum states then feel
+        different potentials, thus the HSC norm-conserving pseudopotential is non-local, in contrast to local pseudopotential which acts
+        on all one-particle wave-functions in the same way. Norm-conserving pseudopotentials are constructed to enforce two conditions:\\
+        \indent Inside the cut-off radius $r_c$, the norm of each pseudo-wavefunction be identical to its corresponding all-electron wavefunction:
+        \begin{equation}
+            \int_{r<r_c}dr^3\phi_{\mathbf{R},i}({\vec{r}})\phi_{\mathbf{R},j}({\vec{r}})=
+            \int_{r<r_{c}}dr^{3}{\tilde{\phi}}_{\mathbf{R},i}({\vec{r}}){\tilde{\phi}}_{\mathbf{R},j}({\vec{r}})
+        \end{equation}
+        \indent All-election and pseudo wavefunctions are identical outside cutoff radius $r_c$.
+    
+\end{document}
