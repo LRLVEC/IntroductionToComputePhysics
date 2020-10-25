@@ -14,7 +14,7 @@
 \geometry{a4paper, left=1cm, right=1cm, top=2cm, bottom=2cm}
 \setlength{\parindent}{1cm}
 \renewcommand\contentsname{Content}
-\title{Report 1: Methods to compute pseudopotential}
+\title{Report 1: Methods to Compute Pseudopotential}
 \author{Yuanxing Duan 段元兴}
 \date{\today}
 \begin{document}
@@ -54,11 +54,12 @@
         $\{l,m\}$. $V_{lm}(r)$ is the pseudopotential that acts on the projected component. Different angular momentum states then feel
         different potentials, thus the HSC norm-conserving pseudopotential is non-local, in contrast to local pseudopotential which acts
         on all one-particle wave-functions in the same way. Norm-conserving pseudopotentials are constructed to enforce two conditions:\\
-        \indent Inside the cut-off radius $r_c$, the norm of each pseudo-wavefunction be identical to its corresponding all-electron wavefunction:
+        \indent 1. Inside the cut-off radius $r_c$, the norm of each pseudo-wavefunction be identical to its corresponding all-electron wavefunction:
         \begin{equation}
-            \int_{r<r_c}dr^3\phi_{\mathbf{R},i}({\vec{r}})\phi_{\mathbf{R},j}({\vec{r}})=
-            \int_{r<r_{c}}dr^{3}{\tilde{\phi}}_{\mathbf{R},i}({\vec{r}}){\tilde{\phi}}_{\mathbf{R},j}({\vec{r}})
+            \int_0^{r_c}dr^3\phi_{\mathbf{R},i}({\vec{r}})\phi_{\mathbf{R},j}({\vec{r}})=
+            \int_0^{r_c}dr^{3}{\tilde{\phi}}_{\mathbf{R},i}({\vec{r}}){\tilde{\phi}}_{\mathbf{R},j}({\vec{r}})
         \end{equation}
-        \indent All-election and pseudo wavefunctions are identical outside cutoff radius $r_c$.
-    
+        where $\phi_{\mathbf{R},i}$ and $\tilde{\phi}_{\mathbf{R},i}$ are the all-electron and pseudo reference states for the pseudopotential
+        on atom $\mathbf{R}$.\\
+        \indent 2. All-election and pseudo wavefunctions are identical outside cutoff radius $r_c$.
 \end{document}
